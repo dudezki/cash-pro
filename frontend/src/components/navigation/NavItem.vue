@@ -97,7 +97,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useNavigationStore } from '../../stores/navigation'
-import { NavItem as NavItemType } from '../../types/navigation'
+import type { NavItem as NavItemType } from '../../types/navigation'
 
 const props = defineProps<{
   item: NavItemType
