@@ -22,6 +22,14 @@ python -m app.scripts.init_super_admin || echo "Warning: Super admin initializat
 echo "Adding usernames to existing users..."
 python -m app.scripts.add_username_to_existing_users || echo "Warning: Username update failed"
 
+# Seed financial modules
+echo "Seeding financial modules..."
+python -m app.scripts.seed_modules || echo "Warning: Module seeding failed"
+
+# Seed subscription plans
+echo "Seeding subscription plans..."
+python -m app.scripts.seed_subscription_plans || echo "Warning: Subscription plan seeding failed"
+
 # Run database migrations (if using Alembic)
 # alembic upgrade head
 
