@@ -13,7 +13,7 @@
           : (isActive 
               ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400' 
               : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100'),
-        level > 0 ? 'pl-9 py-1.5' : 'px-3 py-2'
+        level > 0 ? 'pl-3 py-1.5' : 'px-3 py-2'
       ]"
     >
       <ion-icon
@@ -43,7 +43,7 @@
         isActive 
           ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400' 
           : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100',
-        level > 0 ? 'pl-9 py-1.5' : 'px-3 py-2'
+        level > 0 ? 'pl-3 py-1.5' : 'px-3 py-2'
       ]"
     >
       <ion-icon
