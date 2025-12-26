@@ -86,8 +86,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { computed, onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { useAuthStore } from '../../stores/auth'
 import { useNavigationStore } from '../../stores/navigation'
 import { useThemeStore } from '../../stores/theme'
@@ -99,8 +99,6 @@ const authStore = useAuthStore()
 const navStore = useNavigationStore()
 const themeStore = useThemeStore()
 const route = useRoute()
-const router = useRouter()
-
 const currentYear = new Date().getFullYear()
 
 onMounted(() => {
@@ -140,7 +138,8 @@ async function loadUserContext() {
   
   // Mock: Try to infer role from company relationship
   // In real implementation, this would come from PersonCompany.role
-  const mockRole = 'admin' // owner, admin, member, or viewer
+  type UserRole = 'owner' | 'admin' | 'member' | 'viewer'
+  const mockRole = 'admin' as UserRole // owner, admin, member, or viewer
   
   // Mock: Subscription tier - would come from active subscription
   const mockSubscriptionTier = 'professional' // trial, starter, professional, enterprise
