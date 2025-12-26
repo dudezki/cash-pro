@@ -63,14 +63,14 @@
 
       <!-- Main Content Container -->
       <main class="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900">
-        <div
-          v-motion
-          :initial="{ opacity: 0, y: 10 }"
-          :enter="{ opacity: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' } }"
-          class="h-full p-4"
+        <transition
+          name="route-transition"
+          mode="out-in"
         >
-          <slot />
-        </div>
+          <RouteContent :key="route.fullPath">
+            <slot />
+          </RouteContent>
+        </transition>
       </main>
 
       <!-- Footer -->
@@ -93,6 +93,7 @@ import { useNavigationStore } from '../../stores/navigation'
 import { useThemeStore } from '../../stores/theme'
 import Breadcrumb from '../common/Breadcrumb.vue'
 import SideNavigation from '../navigation/SideNavigation.vue'
+import RouteContent from './RouteContent.vue'
 
 const authStore = useAuthStore()
 const navStore = useNavigationStore()
@@ -108,7 +109,7 @@ onMounted(() => {
 })
 
 // Watch for route changes to auto-expand active items and update navigation
-watch(() => route.path, () => {
+watch(() => route.fullPath, () => {
   navStore.autoExpandActive()
   // Force navigation store to recompute active state
   if (navStore.navigation.items) {
@@ -217,5 +218,36 @@ async function handleCompanySwitch(event: Event) {
 
 .overflow-y-auto::-webkit-scrollbar-thumb:hover {
   background-color: #a0aec0;
+}
+
+/* Route transition animations */
+.route-transition-enter-active {
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+
+.route-transition-leave-active {
+  transition: opacity 0.2s ease-in, transform 0.2s ease-in;
+  position: absolute;
+  width: 100%;
+}
+
+.route-content-wrapper {
+  position: relative;
+}
+
+.route-transition-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.route-transition-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.route-transition-enter-to,
+.route-transition-leave-from {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
